@@ -94,6 +94,20 @@ def show_search_results():
 
             # pass them onto the search resutls page 
             return render_template("searchresults.html")
+        
+
+# route to book an appointment
+@app.route("/book_reservation", methods=["POST"])
+def submit_reservation():
+    """Add a reservation to the db."""
+
+    # recieve input from JS file
+    # add it to db
+    # commit to db
+    # send a text response confirming that it was committed?
+    # return jsonify
+
+    pass
 
 
 
