@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+    {% block head %}{% endblock %}
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    {% if session.get('username') %}
+    <nav class="navbar">
+      <a id="search-reservations-btn" class="btn btn-primary" href="/searchpage">Book a reservation</a>
+      <a id="my-reservations-btn" class="btn btn-primary" href="/searchpage/my_reservations">My reservations</a>
+      <a id="logout-btn" class="btn btn-primary" href="/searchpage/logout">Logout</a>
+    </nav>
+    {% endif %} 
+
+    <!-- Flash messages -->
+    {% for msg in get_flashed_messages() %}
+      <p class="flash-msg">
+      {{ msg }}
+      </p>
+    {% endfor %}
+
+    {% block body %}{% endblock %}
+
+    {% block after_body %}{% endblock %}
+  </body>
+</html>
