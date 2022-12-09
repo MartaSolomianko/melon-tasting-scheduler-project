@@ -47,7 +47,7 @@ class Reservation(db.Model):
 
     def __repr__(self):
 
-        return f"<Reservation reservation_id={self.reservation_id} username={self.username} date_time={self.date}>"
+        return f"<Reservation reservation_id={self.reservation_id} username={self.username} date={self.date}>"
     
 
     @classmethod
@@ -64,18 +64,19 @@ class Reservation(db.Model):
         return cls.query.filter(Reservation.username == username).all()
     
 
-    @classmethod
-    def get_reservation_by_id(cls, reservation_id):
-        """Return a reservation by id, returns None if not found."""
+    # check if this is right...
+    # @classmethod
+    # def get_reservation_by_id(cls, reservation_id):
+    #     """Return a reservation by id, returns None if not found."""
 
-        return cls.query.get(reservation_id)
+    #     return cls.query.get(reservation_id)
     
 
     @classmethod
     def get_reservation_by_date(cls, date):
         """Return a reservation by date, returns None if not found."""
 
-        return cls.query.get(date)
+        return cls.query.filter(Reservation.date == date).all()
 
 
     

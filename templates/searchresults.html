@@ -7,9 +7,17 @@
 
 <h2>Available reservations:</h2>
 
+<ul>
+    {% for reservation in requested_times %}
+        <li>
+            {{ reservation }}
+        </li>
+    {% endfor %}
+</ul>
 
 
-<!-- JS SCRIPT FOR USER TO MAKE RESERVATIONS -->
+
+<!-- JS SCRIPT FOR USER TO MAKE/EDIT/DELETE RESERVATIONS -->
 
 <script src="/static/reservations.js"></script>
 
