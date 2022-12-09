@@ -17,7 +17,7 @@ Task: Bulid an app that allows users to search for and book melon tasting reserv
 ### View reservations
 * Users can view all reservations they have booked
 
-### Future Improvements
+## Future Improvements
 * Address edge-cases in search results
 
 Flesh out scaffolding for: 
