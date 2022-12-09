@@ -18,11 +18,12 @@ Task: Bulid an app that allows users to search for and book melon tasting reserv
 * Users can view all reservations they have booked
 
 ## Future Improvements
-* Address edge-cases in search results
+* Address edge-case in search results for when a user searches for a range that extends into a new day.
 
 Flesh out scaffolding for: 
 * Booking a reservation
 * Editing a reservation
+* Deleting a reservation
 
 ## Set Up
 Clone or fork this repo: 

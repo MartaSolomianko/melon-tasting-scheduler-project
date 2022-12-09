@@ -104,28 +104,17 @@ def show_search_results():
     # if there are no reservations booked on that day by that user 
     # look for time availability
     # based on what is available (meaning check that that start time is not in the reserved_times set) 
-    # returns available appointments within searched range for that day in 30 min increments
-    # I think this will be a string response from the html form input
-    # maybe will need to split string into hour and min
-                
+    # return available appointments within searched range for that day in 30 min increments
+     
+    # making this a list because I want the available appointment times to be ordered                      
     requested_times = []
-
-    # print()
-    # print("this is the start time on line 114")
-    # print(start_time)
-    # print(type(start_time))
 
     start_time_hour = start_time[:2]
     start_time_min = start_time[-2:]
-    # print(start_time_hour)
-    # print(start_time_min)
 
     if start_time_min == "00" or start_time_min == "30":
         # change start_time to datetime time object 
         start_time = datetime.strptime(start_time, "%H:%M").time()
-        # print()
-        # print("this is the start_time after it becomes a time object.")
-        # print(start_time)
         requested_times.append(start_time)
 
     else:
@@ -150,37 +139,15 @@ def show_search_results():
         if start_time not in reserved_times:
             requested_times.append(start_time)
 
-    print()
-    print("this is the start_time on line 152.")
-    print(start_time)
-
-    print()
-    print("this is the requested times list")
-    print(requested_times)
-
-    print()
-    print("this is the end time")
-    print(end_time)
-    print(type(end_time))
-
-    # convert end_time to a time object 
+    # convert end_time to a time object so that you can compare it to the start time
     end_time = datetime.strptime(end_time, "%H:%M").time()
 
-    print()
-    print("this is the end time after it becomes a time object")
-    print(end_time)
-    print(type(end_time))
-
-    print()
-    print("these are the start hour and min")
-    print(start_time_hour)
-    print(type(start_time_hour))
-    print(start_time_min)
-    print(type(start_time_min))
-    
     start_time_hour = int(start_time_hour)
     start_time_min = int(start_time_min)
 
+    # TODO:
+    # EDGE CASE: when a user searches for an appointment that crosses over into a new day...
+    # need to add the day in here somehow.
 
     while start_time < end_time:
 
@@ -202,26 +169,25 @@ def show_search_results():
                 requested_times.append(start_time)
         
 
-
-    print()
-    print("this is the requested times list after the while loop.")
-    print(requested_times)
-
-
-    # pass available appointments onto the search resutls page 
-    return render_template("searchresults.html", requested_times=requested_times)
+    # pass available appointments onto the search resultss page, and date
+    return render_template("searchresults.html", requested_times=requested_times, date=date)
         
 
 
 # route to book an appointment
-@app.route("/book_reservation", methods=["POST"])
+@app.route("/book_reservation.json", methods=["POST"])
 def submit_reservation():
     """Add a reservation to the db."""
 
     # recieve input from JS file
-    # add it to db
+    date = request.json.get("date")
+    start_time = request.json.get("starttime")
+
+    # add reservation to db 
+    # username, date, start_time, end_time
+
     # commit to db
-    # send a text response confirming that it was committed?
+    # send a text response confirming that it was committed
     # return jsonify
 
     pass

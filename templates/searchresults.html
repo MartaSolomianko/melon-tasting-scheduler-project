@@ -10,7 +10,8 @@
 <ul>
     {% for reservation in requested_times %}
         <li>
-            {{ reservation }}
+            {{ reservation }} 
+            <a id="{{ reservation }}" class="book-start-time" value="{{ date }}">Book Me</a>
         </li>
     {% endfor %}
 </ul>
