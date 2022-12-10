@@ -179,12 +179,44 @@ def show_search_results():
 def submit_reservation():
     """Add a reservation to the db."""
 
-    # recieve input from JS file
+    # recieve string inputs from JS file
     date = request.json.get("date")
     start_time = request.json.get("starttime")
 
-    # add reservation to db 
-    # username, date, start_time, end_time
+    username = session.get("username")
+
+    start_time_hour = int(start_time[:2])
+    start_time_min = int(start_time[3:5])
+    end_time_hour = 0
+    end_time_min = 0
+
+    print(start_time_hour)
+    print(start_time_min)
+
+    if start_time_min == 0:
+        end_time_min = 30
+        end_time_hour = start_time_hour
+
+        
+    # TODO: adjust for edge case when the end time crosses over into a new day
+    elif start_time_min == 30:
+        end_time_min = 0
+        if end_time_hour != 23:
+            end_time_hour = start_time_hour + 1
+        else: 
+            end_time_hour = 0
+
+    
+    end_time = time(end_time_hour, end_time_min)
+    print()
+    print("this is the end time on 212")
+    print(end_time)
+    start_time = datetime.strptime(start_time, "%H:%M:%S").time()
+    date = datetime.strptime(date, "%Y-%m-%d").date()
+
+    # reservation = Reservation.create(username, date, start_time, end_time)
+    # db.session.add(reservation)
+
 
     # commit to db
     # send a text response confirming that it was committed

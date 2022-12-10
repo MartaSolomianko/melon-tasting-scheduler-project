@@ -8,7 +8,7 @@ Task: Bulid an app that allows users to search for and book melon tasting reserv
 
 ### Search for available reservations
 * Users can choose a time range and date
-* They can only reserve one tasting per day
+* Users can only reserve one tasting per day
 
 ### Search results
 * Users are shown available reservations within their searched for range
